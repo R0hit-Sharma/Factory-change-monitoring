@@ -12,7 +12,7 @@ csv_f2 = list(csv.reader(f2))
 #csv_f3 = csv.writer(f3,delimiter=',')
 
 
-GOOGLE_MAPS_API_URL = 'https://maps.googleapis.com/maps/api/geocode/json?key=AIzaSyD2K_m8ZxXBDWitV9GRiEcYba5jirN6rK8'
+GOOGLE_MAPS_API_URL = 'your key goes here'
 
 def getAddressJson(cin, compName, building_type, addr):
     locality = ''
