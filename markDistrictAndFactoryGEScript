@@ -1,0 +1,22 @@
+
+var geometry = ee.FeatureCollection('users/mtpictd/Ind_Adm2_orig')
+    .filter(ee.Filter.eq('Name','Ajmer'));
+// print(geometry);
+var bbox = geometry.geometry().bounds();
+Map.centerObject(bbox); Map.addLayer(bbox); Map.addLayer(geometry, {color: 'yellow'});
+print(geometry);
+//Code to plot an area around a factory
+var oneFactory = ee.Feature(ee.Geometry.Rectangle(75.0219086, 26.121224791, 75.0419086, 26.139242809),{name:'GEECEE VENTURES LIMITED_2Kms'});
+Map.addLayer(oneFactory, {color: 'red'}, 'oneFactory');
+// return the list of coordinates
+var listCoords = ee.Array.cat(bbox.coordinates(), 1); 
+
+// get the X-coordinates
+var xCoords = listCoords.slice(1, 0, 1); print('xCoords', xCoords);
+var yCoords = listCoords.slice(1, 1, 2); print('yCoords', yCoords);
+
+// reduce the arrays to find the max (or min) value
+var xMin = xCoords.reduce('min', [0]).get([0,0]); print('xMin',xMin);
+var xMax = xCoords.reduce('max', [0]).get([0,0]); print('xMax',xMax);
+var yMin = yCoords.reduce('min', [0]).get([0,0]); print('yMin',yMin);
+var yMax = yCoords.reduce('max', [0]).get([0,0]); print('yMax',yMax);
